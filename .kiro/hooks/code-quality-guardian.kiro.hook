@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "name": "Code Quality Guardian",
+  "description": "Automatically reviews new React components to ensure TypeScript types are properly defined, accessibility attributes are included, and mobile responsiveness is implemented",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "src/components/**/*.tsx",
+      "src/components/**/*.ts",
+      "components/**/*.tsx",
+      "components/**/*.ts"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A new React component has been created or modified. Please review the code and ensure:\n\n1. **TypeScript Types**: All props, state, and function parameters have proper TypeScript type definitions. Check for any 'any' types that should be more specific.\n\n2. **Accessibility**: Verify that appropriate ARIA attributes, semantic HTML elements, keyboard navigation support, and screen reader compatibility are implemented.\n\n3. **Mobile Responsiveness**: Confirm that the component includes responsive design patterns, appropriate breakpoints, touch-friendly interactions, and works well on mobile devices.\n\nProvide specific feedback on any issues found and suggest improvements. If the component meets all quality standards, acknowledge the good practices implemented."
+  }
+}

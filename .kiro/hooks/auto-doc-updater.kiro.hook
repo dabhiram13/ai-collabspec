@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "name": "Auto-Documentation Updater",
+  "description": "Automatically updates specification documents and adds inline code comments explaining business logic for non-technical team members when TypeScript files are saved",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/*.ts",
+      "**/*.tsx"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A TypeScript file has been modified. Please analyze the changes and: 1) Update any related specification documents to reflect the code changes, 2) Add or update inline code comments that explain the business logic in terms that non-technical team members can understand, 3) Ensure documentation follows progressive disclosure principles (simple overview to detailed specs), and 4) Include business impact summaries for any technical decisions made in the code."
+  }
+}

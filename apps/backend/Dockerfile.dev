@@ -1,0 +1,27 @@
+# Development Dockerfile for CollabSpec Backend
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Install dependencies for the entire monorepo
+COPY package*.json ./
+COPY turbo.json ./
+COPY apps/backend/package*.json ./apps/backend/
+COPY packages/shared/package*.json ./packages/shared/
+
+# Install all dependencies
+RUN npm install
+
+# Copy source code
+COPY apps/backend ./apps/backend
+COPY packages/shared ./packages/shared
+
+# Build shared package
+RUN npm run build --workspace=@collabspec/shared
+
+# Expose port for backend service
+EXPOSE 3001
+
+# Start development server with hot reload
+CMD ["npm", "run", "dev", "--workspace=@collabspec/backend"]

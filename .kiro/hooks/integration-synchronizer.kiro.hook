@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "name": "Integration Synchronizer",
+  "description": "Monitors specification files for changes and generates summary updates for external tools like Slack notifications and GitHub issue updates while maintaining integration consistency",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "*.md",
+      "*.json",
+      "*.yaml",
+      "*.yml",
+      "spec/**/*",
+      "docs/**/*",
+      "api/**/*"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A specification file has been modified. Please analyze the changes and generate appropriate summary updates for external integrations. Create Slack notification content highlighting key changes, prepare GitHub issue updates if relevant, and ensure all integration points remain consistent. Focus on business impact and technical implications that cross-functional teams need to know about."
+  }
+}
